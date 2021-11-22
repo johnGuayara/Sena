@@ -25,6 +25,9 @@
     <!-------------------------------------------------------------------------------->
 </head>
 <body>
+    <?php
+    $conexion=mysqli_connect('localhost','root','','compare') or die('Problema en la conexion')
+    ?>
 
     <div class="page">
         
@@ -58,7 +61,7 @@
                     <a href="register-users.php" class="signup-text">REGISTRARSE</a>
                 </div>
 
-                <form action="php/register-users.php">
+                <form  method="POST" action="#">
                     
                     <div class="center">
                         <div class="row1">
@@ -66,7 +69,7 @@
                                 <i class="fas fa-envelope"></i>
                                 <input type="text" name="user" placeholder="Correo">
                             </label>
-
+                            <br><br>
                             <label for="user-name">
                                 <i class="fas fa-user"></i>
                                 <input type="text" name="user-name" placeholder="Nombre de usuario">
@@ -81,10 +84,10 @@
                                 <input type="password" name="password" placeholder="Contraseña">
                             </label>
 
-                            <label for="conpassword">
+                           <!-- <label for="conpassword">
                                 <i class="fas fa-lock"></i>
                                 <input type="password" name="conpassword" placeholder="Confirmar contraseña">
-                            </label>
+                            </label>-->
                         </div>
                     </div>
                     
@@ -94,17 +97,29 @@
                     </div>
 
                 </form>
-
                 <div class="incorrect-pass" style="color: red;">
                     <p>¡Las contraseñas no coinciden!</p>
                     <p>¡El correo no es valido!</p>
                     <p>¡El nombre de usuario no puede contener caracteres especiales!</p>
                 </div>
-
             </div>
-
-        </div>
-    </div>
-    
+     <?php
+    if (isset($_POST['button'])) {
+        $nombre     =$_POST['user-name'];
+        $correo    =$_POST['user'];
+        $contra      =$_POST['password'];
+        $insertar="INSERT INTO usuarios(NOMBRE,EMAIL,PASSWORD) VALUES ('$nombre','$correo','$contra')";
+        $ejecutar=mysqli_query($conexion,$insertar);
+        if ($ejecutar) {
+            //header("location: display.php");
+            //echo "<script>
+            //windows.open('admistrador2.php')
+            //</script>";
+            echo "<div class='registro'>Registro completado por favor inicia sesion</div>";
+        }
+    }
+    ?>
+</div>
+</div>   
 </body>
 </html>

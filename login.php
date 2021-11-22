@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 
-                <form class="page-box__targets-rigth" action="php/validate.php" method="post">
+                <form class="page-box__targets-rigth" action="php/logi2.php" method="POST">
 
                         <div class="page-box__targets-rigth-data">
                             <label class="correo">
@@ -62,8 +62,5 @@
                 <p class="footer-text">SERVICIO NACIONAL DE APRENDIZAJE SENA - CENTRO DE MATERIALES Y ENSAYOS</p>
         </footer>
     </div>
-
-    
-
 </body>
 </html>

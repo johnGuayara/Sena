@@ -56,6 +56,7 @@
 
                 <h1 class="nav-box__title">COMPARE</h1>
                 <a class="nav-box__login" href="login-users.php">Iniciar sesion</a>
+                <a class="nav-box__login" href="perfil.php">Perfil</a>
                 <a href="#">
                     <i class="fas fa-home fa-2x" style="color: white;"></i>
                 </a>
@@ -103,7 +104,7 @@
 
         
 
-        <form action="php/search.php" class="home-section__search-bar">
+        <form action="search.php" class="home-section__search-bar">
             <h3>Buscar:</h3>
             <input type="text" name="content">
             <button type="submit" method="post">

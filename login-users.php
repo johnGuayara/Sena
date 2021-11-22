@@ -29,7 +29,7 @@
     <div class="page">
         
         <div class="nav">
-            <a href="display.php" class="nav__compare">
+            <a href="index.php" class="nav__compare">
                 <i class="fas fa-tv"></i>
                 Compare
             </a>
@@ -58,7 +58,7 @@
                     <a href="register-users.php" class="signup-text">REGISTRARSE</a>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="php/logi.php" method="POST">
                     <label for="user">Usuario: <br><br>
                         <i class="fas fa-user"></i>
                         <input type="text" name="user" placeholder="alguien@example.com">
@@ -88,65 +88,5 @@
 
         </div>
     </div>
-     <?php
-include_once 'conexion.php';
-session_start();
-if(isset($_POST['cerrar_sesion']))
-{
-        include_once 'cerrar.php';
-}
-if(isset($_SESSION['rol']))
-{
-    switch ($_SESSION['rol'])
-     {
-        case 1:
-            header('Location: controlpanel.php');
-            break;
-        case 2:
-            header('Location: display.php');
-            break;
-        default:
-            echo "Este rol no existe dentro de las opciones";
-            break;
-    }
-}
-if(isset($_POST['user']) && (isset($_POST['password'])))
-{
-    $username=$_POST['user'];
-        $password=$_POST['password'];
-
-        $db=new Database();
-        $query=$db->connectar()->prepare('SELECT * FROM usuarios WHERE EMAIL=:user AND PASSWORD=:password');
-        $query->execute(['user'=>$username,'password'=>$password]);
-        $arreglofila=$query->fetch(PDO::FETCH_NUM);
-
-        if ($arreglofila == true ) 
-            {
-                $rol=$arreglofila[3];
-                $_SESSION['rol']=$rol;
-                switch ($rol) 
-         {
-            case 1:
-                header('Location: controlpanel.php');
-            break;
-            case 2:
-                header('Location: display.php');
-            break;
-            default:
-                echo "Este rol de no existe dentro de las opciones";
-            break;
-        }
-            $usuario=$arreglofila[1];
-            $_SESSION['nomusuario']=$usuario;
-            $ft=$arreglofila[5];
-            $_SESSION['foto']=$ft;
-    }
-    else
-    {
-        echo "Nombre de usuario o contraseña incorrecto";
-    }
-}
-?> 
-    
 </body>
 </html>
